@@ -1,15 +1,20 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('home');
+        $cats = Category::all();
+        return view('home', compact('cats'));
     }
     public function about()
     {
         return view('about');
     }
 }
+
+?>

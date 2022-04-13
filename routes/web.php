@@ -12,6 +12,6 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('', [HomeController::class, 'home']);
+Route::get('', [HomeController::class, 'home'])->name('home');
 // http://127.0.0.1:3000/gioi-thieu
-Route::get('gioi-thieu', [HomeController::class, 'about']);
+Route::get('gioi-thieu', [HomeController::class, 'about'])->name('about');

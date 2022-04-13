@@ -19,7 +19,30 @@
     </head>
     <body>
         <h1 class="text-center">Hello World</h1>
-
+            
+            <div class="container">
+                
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($cats as $model)
+                        <tr>
+                            <td>{{$model->id}}</td>
+                            <td>{{$model->name}}</td>
+                            <td>{{ $model->status == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            </div>
+            
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript -->
