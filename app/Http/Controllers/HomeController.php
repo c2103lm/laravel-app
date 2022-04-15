@@ -13,7 +13,10 @@ class HomeController extends Controller
     }
     public function about()
     {
-        return view('about');
+        $name = "About Page";
+        $check = 5;
+        $data = ['Hòa','Hoàng','Hùng'];
+        return view('about', compact('name','data','check'));
     }
 }
 
