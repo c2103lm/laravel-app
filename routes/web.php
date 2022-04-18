@@ -20,7 +20,7 @@ Route::get('', [HomeController::class, 'home'])->name('home');
 Route::get('gioi-thieu', [HomeController::class, 'about'])->name('about');
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
 
     Route::group(['prefix'=>'category'], function() {
         Route::get('', [CategoryController::class, 'index'])->name('category.index');

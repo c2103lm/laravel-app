@@ -10,6 +10,9 @@
     <div class="form-group">
         <label for="">Tên danh mục</label>
         <input type="text" class="form-control" name="name" placeholder="Input name">
+        @error('name')
+            <small class="help-block">{{$message}}</small>
+        @enderror
     </div>
 
     <div class="form-group">
@@ -28,8 +31,6 @@
             </label>
         </div>
     </div>
-
-    
 
     <button type="submit" class="btn btn-primary">Thêm mới</button>
 </form>
