@@ -35,7 +35,7 @@
             <td class="text-right">
                 <form action="{{ route('category.delete', $model->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{{ route('category.edit', $model->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
                     <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn cóa không?')"><i class="fa fa-trash"></i>  Xóa</button>
                 </form>
             </td>
