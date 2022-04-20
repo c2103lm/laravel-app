@@ -10,7 +10,6 @@
         <input class="form-control" name="key" placeholder="Input key">
     </div>
 
-    
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
     <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
@@ -33,15 +32,17 @@
             <td>{{$model->id}}</td>
             <td>{{$model->name}}</td>
             <td>{{$model->status}}</td>
-            <td>
-                <a href="" class="btn btn-sm btn-primary">Sửa</a>
-                <a href="" class="btn btn-sm btn-primary">Xóa</a>
+            <td class="text-right">
+                <form action="{{ route('category.delete', $model->id) }}" method="post">
+                    @csrf @method('DELETE')
+                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn cóa không?')"><i class="fa fa-trash"></i>  Xóa</button>
+                </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 
- 
 </table>
 <hr>
     {{$data->appends(request()->all())->links()}}

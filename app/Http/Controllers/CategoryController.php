@@ -13,8 +13,6 @@ class CategoryController extends Controller
             $key  =$req->key;
             $data = Category::where('name','like','%'.$key.'%')->paginate(2);
         }
-       
-
 
         return view('admin.category.index', compact('data'));
     }
@@ -39,5 +37,15 @@ class CategoryController extends Controller
         Category::create($req->only('name','status'));
         // chuyển hướng
         return redirect()->route('category.index');
+    }
+
+    // CategoryController::delete
+    public function delete(Category $category)
+    {
+        
+        $category->delete();
+
+        return redirect()->route('category.index');
+
     }
 }
