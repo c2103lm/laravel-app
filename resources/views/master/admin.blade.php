@@ -269,8 +269,8 @@
 <script src="{{url('public/admin')}}/js/bootstrap.min.js"></script>
 <script src="{{url('public/admin')}}/js/adminlte.min.js"></script>
 <script src="{{url('public/admin')}}/js/dashboard.js"></script>
-<!-- <script src="{{url('public/admin')}}/tinymce/tinymce.min.js"></script> -->
-<!-- <script src="{{url('public/admin')}}/tinymce/config.js"></script> -->
+<script src="{{url('public/admin')}}/tinymce/tinymce.min.js"></script>
+<script src="{{url('public/admin')}}/tinymce/config.js"></script>
 <script src="{{url('public/admin')}}/js/function.js"></script>
 </body>
 </html>
