@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,18 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('update/{category}', [CategoryController::class, 'update'])->name('category.update');
+    });
+
+    Route::group(['prefix'=>'product'], function() {
+        Route::get('', [ProductController::class, 'index'])->name('product.index');
+
+        Route::delete('delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
+
+        Route::get('create', [ProductController::class, 'create'])->name('product.create');
+        Route::post('store', [ProductController::class, 'store'])->name('product.store');
+
+        Route::get('edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::put('update/{product}', [ProductController::class, 'update'])->name('product.update');
     });
     
 });

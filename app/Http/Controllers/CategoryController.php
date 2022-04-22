@@ -8,10 +8,10 @@ class CategoryController extends Controller
 {
     public function index (Request $req)
     {
-        $data = Category::paginate(2);
+        $data = Category::paginate();
         if ($req->key) {
             $key  =$req->key;
-            $data = Category::where('name','like','%'.$key.'%')->paginate(2);
+            $data = Category::where('name','like','%'.$key.'%')->paginate();
         }
 
         return view('admin.category.index', compact('data'));
