@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix'=>'category'], function() {
         Route::get('', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
 
         Route::delete('delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
 
@@ -33,6 +34,9 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('update/{category}', [CategoryController::class, 'update'])->name('category.update');
+
+        Route::get('restore/{category}', [CategoryController::class, 'restore'])->name('category.restore');
+        Route::delete('force-delete/{category}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
     });
 
     Route::group(['prefix'=>'product'], function() {

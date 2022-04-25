@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     // protected $table = 'danh_muc';
     protected $fillable = ['name','status'];
+    protected $dates = ['deleted_at'];
     // 1 category - n product
     public function products()
     {
@@ -35,4 +37,4 @@ class Category extends Model
     {
         return $this->update(request()->only('name','status'));
     }
-}
+} 

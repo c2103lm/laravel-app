@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` VARCHAR(255) NOT NULL UNIQUE,
   `status` tinyint DEFAULT '0',
   `created_at` timestamp DEFAULT current_timestamp(),
-  `updated_at` date null
+  `updated_at` date null,
+  `deleted_at` date null
 ) ENGINE = InnoDB;
 
 

@@ -1,6 +1,6 @@
 @extends('master.admin')
 
-@section('title','Admin cPanel')
+@section('title','Danh mục trong thùng rác')
 
 @section('main')
 
@@ -13,7 +13,6 @@
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
     <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
-    <a href="{{route('category.trashed')}}" class="btn btn-primary"><i class="fa fa-trash"></i> Thùng rác</a>
 </form>
 
 <hr>
@@ -34,8 +33,9 @@
             <td>{{$model->name}} ( {{ $model->products->count() }} )</td>
             <td>{{$model->status}}</td>
             <td class="text-right">
-                <form action="{{ route('category.delete', $model->id) }}" method="post">
+                <form action="{{ route('category.forceDelete', $model->id) }}" method="post">
                     @csrf @method('DELETE')
+                    <a href="{{ route('category.restore', $model->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Phục hồi</a>
                     <a href="{{ route('category.edit', $model->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
                     <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn cóa không?')"><i class="fa fa-trash"></i>  Xóa</button>
                 </form>
