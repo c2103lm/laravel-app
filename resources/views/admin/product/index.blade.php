@@ -21,7 +21,10 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Tên danh mục (Sản phẩm)</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Tên danh mục</th>
+            <th>Giá/ KM</th>
             <th>Trạng thái</th>
             <th>Tùy chọn</th>
         </tr>
@@ -30,8 +33,18 @@
         @foreach($data as $model)
         <tr>
             <td>{{$model->id}}</td>
-            <td>{{$model->name}} ( {{ $model->products->count() }} )</td>
-            <td>{{$model->status}}</td>
+            <td><img src="{{url('public/uploads/'.$model->image)}}" alt="" width="45"></td>
+            <td>{{$model->name}}</td>
+            <td>{{$model->cat->name}}</td>
+            <td>{{$model->price}}/ <span class="label label-success">{{$model->sale_price}}</span></td>
+            <td>
+                @if($model->status == 0)
+                <span class="label label-success"> Tạm ẩn</span>
+                @else 
+                <span class="label label-success"> Hiển thị</span>
+
+                @endif
+            </td>
             <td class="text-right">
                 <form action="{{ route('category.delete', $model->id) }}" method="post">
                     @csrf @method('DELETE')

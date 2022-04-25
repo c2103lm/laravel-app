@@ -8,6 +8,12 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+       $data = Product::paginate();
+
+       return view('admin.product.index', compact('data'));
+    }
     public function create()
     {
         $cats = Category::orderBy('name','ASC')->get();

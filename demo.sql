@@ -17,12 +17,10 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image` VARCHAR(255) NOT NULL,
   `price` float,
   `sale_price` float,
-  `desr` float,
+  `desr` text,
   `category_id` int not null,
   `status` tinyint DEFAULT '0',
   `created_at` timestamp DEFAULT current_timestamp(),
   `updated_at` date null,
   FOREIGN KEY (category_id) REFERENCES categories(id)
 ) ENGINE = InnoDB;
-
-
