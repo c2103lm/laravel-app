@@ -19,9 +19,12 @@ Route::get('', [HomeController::class, 'home'])->name('home');
 // http://127.0.0.1:3000/gioi-thieu
 
 Route::get('gioi-thieu', [HomeController::class, 'about'])->name('about');
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'check_login']);
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.index');
     Route::resources([
         'category' => CategoryController::class,
         'product' => ProductController::class
