@@ -12,7 +12,7 @@
 
 
     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-    <a href="{{route('category.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+    <a href="{{route('product.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
 </form>
 
 <hr>
@@ -40,16 +40,20 @@
             <td>
                 @if($model->status == 0)
                 <span class="label label-success"> Tạm ẩn</span>
-                @else 
+                @else
                 <span class="label label-success"> Hiển thị</span>
 
                 @endif
             </td>
             <td class="text-right">
-                <form action="{{ route('category.delete', $model->id) }}" method="post">
+                <form action="{{ route('product.destroy', $model->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="{{ route('category.edit', $model->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Sửa</a>
-                    <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn cóa không?')"><i class="fa fa-trash"></i>  Xóa</button>
+                    <a href="{{ route('product.edit', $model->id) }}" class="btn btn-sm btn-primary"><i
+                            class="fa fa-edit"></i> Sửa</a>
+                    <a href="{{ route('product.show', $model->id) }}" class="btn btn-sm btn-primary"><i
+                            class="fa fa-edit"></i> Chi tiết</a>
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn cóa không?')"><i
+                            class="fa fa-trash"></i> Xóa</button>
                 </form>
             </td>
         </tr>
@@ -58,5 +62,5 @@
 
 </table>
 <hr>
-    {{$data->appends(request()->all())->links()}}
+{{$data->appends(request()->all())->links()}}
 @stop()

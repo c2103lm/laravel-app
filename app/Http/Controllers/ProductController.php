@@ -14,6 +14,10 @@ class ProductController extends Controller
 
        return view('admin.product.index', compact('data'));
     }
+    public function show (Product $product)
+    {
+        return view('admin.product.show', compact('product'));
+    }
     public function create()
     {
         $cats = Category::orderBy('name','ASC')->get();
@@ -43,4 +47,3 @@ class ProductController extends Controller
 
     }
 }
-
