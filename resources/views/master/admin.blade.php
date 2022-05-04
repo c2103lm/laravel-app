@@ -1,3 +1,6 @@
+<?php 
+    $menus = config('menu');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,6 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title')</title>
+    <meta name="token" content="{{csrf_token()}}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -184,28 +188,29 @@
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
+                @foreach($menus as $mn)
+                   @if (isset($mn['items']) && count($mn['items']) > 0)
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <i class="fa {{$mn['icon']}}"></i> <span>{{$mn['title']}}</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href=""><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li><a href=""><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                        </ul>
+                        @foreach($mn['items'] as $item)
+                            <li><a href="{{route($item['route']) }}"><i class="fa fa-circle-o"></i> {{$item['title']}}</a></li>
+                            @endforeach
+                         </ul>
                     </li>
-
+                    @else
                     <li>
-                        <a href="">
-                            <i class="fa fa-th"></i> <span>Widgets</span>
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-green">Hot</small>
-                            </span>
+                        <a href="{{route($mn['route'])}}">
+                            <i class="fa {{$mn['icon']}}"></i> <span>{{$mn['title']}}</span>
                         </a>
                     </li>
-
+                    @endif
+                @endforeach
                 </ul>
             </section>
             <!-- /.sidebar -->

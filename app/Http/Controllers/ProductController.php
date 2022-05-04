@@ -20,9 +20,9 @@ class ProductController extends Controller
         return view('admin.product.create', compact('cats'));
     }
 
-    public function store(Request $req)
+    public function store()
     {
-        $req->validate([
+        request()->validate([
             'name' => 'required|unique:products',
             'category_id' => 'required',
             'price' => 'required',
@@ -32,11 +32,11 @@ class ProductController extends Controller
             'upload.mimes' => 'Định dạng file là: jpeg, jpg, png, gif, bmp',
         ]);
 
-        $ext = $req->upload->extension();
+        $ext = request()->upload->extension();
         $file_name = time().'.'.$ext;
-        $req->upload->move(public_path('uploads'), $file_name);
+        request()->upload->move(public_path('uploads'), $file_name);
 
-        $data = $req->only('name','price','sale_price','category_id','status','desr');
+        $data = request()->only('name','price','sale_price','category_id','status','desr');
         $data['image'] = $file_name;
         // dd($data);
         Product::create($data);
