@@ -43,7 +43,10 @@ class ProductController extends Controller
         $data = request()->only('name','price','sale_price','category_id','status','desr');
         $data['image'] = $file_name;
         // dd($data);
-        Product::create($data);
+        if (Product::create($data)) {
+            return redirect()->route('product.index')->with('ok','Thêm mới thành công');
+        }
+        return redirect()->route('product.index')->with('no','Thêm mới không thành công');
 
     }
 }

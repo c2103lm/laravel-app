@@ -22,4 +22,10 @@ class Product extends Model
     {
         return $this->hasOne(Category::class,'id','category_id');
     }
+
+
+    public function scopeSale($query, $limit = 6)
+    {
+        return $query->orderBy('id','DESC')->where('sale_price','>',0)->limit($limit)->get();
+    }
 }

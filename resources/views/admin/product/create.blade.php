@@ -10,7 +10,7 @@
         <div class="col-md-9">
             <div class="form-group">
                 <label for="">Tên sản phẩm</label>
-                <input type="text" class="form-control" name="name" placeholder="Tên sản phẩm">
+                <input type="text" class="form-control" name="name" placeholder="Tên sản phẩm" value="{{ old('name') }}">
                 @error('name')
                 <small class="help-block">{{$message}}</small>
                 @enderror
@@ -20,7 +20,7 @@
                 <label for="">Mô tả</label>
 
                 <textarea name="desr" id="content" class="form-control" rows="3"
-                    placeholder="Mô tả sản phẩm..."></textarea>
+                    placeholder="Mô tả sản phẩm...">{{ old('desr') }}</textarea>
 
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <select name="category_id" class="form-control">
                     <option value="">...</option>
                     @foreach($cats as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    <option value="{{$cat->id}}" {{old('category_id') == $cat->id ? 'selected' : ''}}>{{$cat->name}}</option>
                     @endforeach
                 </select>
 
@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="">Giá sản phẩm</label>
-                <input type="text" class="form-control" name="price" placeholder="Giá sản phẩm">
+                <input type="text" class="form-control" name="price" placeholder="Giá sản phẩm" value="{{ old('price') }}">
                 @error('price')
                 <small class="help-block">{{$message}}</small>
                 @enderror
@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label for="">Giá Km</label>
-                <input type="text" class="form-control" name="sale_price" placeholder="Giá sản phẩm">
+                <input type="text" class="form-control" name="sale_price" placeholder="Giá sản phẩm" value="{{ old('sale_price') }}">
                 @error('sale_price')
                 <small class="help-block">{{$message}}</small>
                 @enderror
@@ -68,13 +68,13 @@
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="1" checked>
+                        <input type="radio" name="status" value="1" {{old('status') == 1 ? 'checked' : ''}} >
                         Hiển thị
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="0">
+                        <input type="radio" name="status" value="0" {{old('status') == 0 ? 'checked' : ''}}>
                         Tạm ẩn
                     </label>
                 </div>
