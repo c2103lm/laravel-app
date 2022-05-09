@@ -19,6 +19,7 @@ Route::get('', [HomeController::class, 'home'])->name('home');
 // http://127.0.0.1:3000/gioi-thieu
 
 Route::get('gioi-thieu', [HomeController::class, 'about'])->name('about');
+Route::get('/{category}-{slug}', [HomeController::class, 'category'])->name('home.category');
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminController::class, 'check_login']);
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
