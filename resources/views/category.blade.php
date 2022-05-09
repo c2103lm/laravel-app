@@ -20,18 +20,7 @@
             <!-- start grids_of_3 -->
             @if ($products->count())
             <div class="grids_of_3">
-                @foreach($products as $ps)
-                <div class="grid1_of_3">
-                    <a href="">
-                        <img src="{{url('public/uploads')}}/{{$ps->image}}" alt="{{$ps->name}}" />
-                        <h3>{{$ps->name}}</h3>
-                        <div class="price">
-                            <h4>{{$ps->price}}<span>đ</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                @endforeach
+             <x-product-list :data="$products"/>
             </div>
             @else 
                 

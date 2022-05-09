@@ -28,6 +28,12 @@ class HomeController extends Controller
         // dd ($products);
         return view('category', compact('products','category'));
     }
+    public function product (Product $product)
+    {
+        // $products = $category->products()->paginate(3);
+        // dd ($products);
+        return view('product', compact('product'));
+    }
 }
 
 ?>

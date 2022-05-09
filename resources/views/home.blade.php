@@ -66,6 +66,7 @@
         <div class="main1">
             <h2>featured products</h2>
         </div>
+       
     </div>
 </div>
 <!-- start main -->
@@ -74,18 +75,7 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
-                @foreach($productSale as $ps)
-                <div class="grid1_of_3">
-                    <a href="">
-                        <img src="{{url('public/uploads')}}/{{$ps->image}}" alt="{{$ps->name}}" />
-                        <h3>{{$ps->name}}</h3>
-                        <div class="price">
-                            <h4>{{$ps->price}}<span>đ</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                @endforeach
+                <x-product-list :data="$productSale"/>
             </div>
             <div class="clear"></div>
         </div>

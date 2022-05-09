@@ -20,6 +20,7 @@ Route::get('', [HomeController::class, 'home'])->name('home');
 
 Route::get('gioi-thieu', [HomeController::class, 'about'])->name('about');
 Route::get('/{category}-{slug}', [HomeController::class, 'category'])->name('home.category');
+Route::get('san-pham/{product}-{slug}', [HomeController::class, 'product'])->name('home.product');
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminController::class, 'check_login']);
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
