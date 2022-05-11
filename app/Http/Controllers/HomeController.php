@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function home()
     {
+        // dd(auth()->guard('customer')->user()->name);
         $productCarousel = Product::orderBy('id','DESC')->limit(8)->get();
         $productSale = Product::sale(3);
         return view('home', compact('productCarousel','productSale'));
@@ -62,6 +63,27 @@ class HomeController extends Controller
          else {
              return redirect()->back();
          }
+     }
+
+     public function login()
+     {
+        return view('customer.login');
+     }
+
+     public function post_login(Request $req)
+     {
+        $data = $req->only('email','password');
+        $check = auth()->guard('customer')->attempt($data);
+        if ($check) {
+           return redirect()->route('home')->with('ok','Chào mừng trở lại');
+        }
+        return redirect()->back()->with('no','Đăng nhập thất bại');
+     }
+
+     public function logout()
+     {
+        auth()->guard('customer')->logout();
+        return redirect()->route('home.login')->with('ok','Chào mừng trở lại');
      }
 }
 

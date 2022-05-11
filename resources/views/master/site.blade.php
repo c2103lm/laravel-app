@@ -58,6 +58,13 @@
                         @endforeach
                         <li><a href="#">services</a></li>
                         <li><a href="#">Contact us</a></li>
+                        @if (auth()->guard('customer')->check())
+                            <li><a href="">{{auth()->guard('customer')->user()->name}}</a></li>
+                            <li><a href="{{ route('home.logout') }}">Thoát</a></li>
+                        @else 
+                            <li><a href="{{ route('home.register') }}">Đăng ký</a></li>
+                            <li><a href="{{ route('home.login') }}">Đăng nhập</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="top-nav">

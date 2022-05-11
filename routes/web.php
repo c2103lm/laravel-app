@@ -24,7 +24,8 @@ Route::get('san-pham/{product}-{slug}', [HomeController::class, 'product'])->nam
 Route::get('register', [HomeController::class, 'register'])->name('home.register');
 Route::post('register', [HomeController::class, 'post_register']);
 Route::get('login', [HomeController::class, 'login'])->name('home.login');
-
+Route::post('login', [HomeController::class, 'post_login']);
+Route::get('logout', [HomeController::class, 'logout'])->name('home.logout');
 /**
  * Admin router
  */
