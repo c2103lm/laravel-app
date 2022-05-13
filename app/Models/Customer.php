@@ -28,4 +28,34 @@ class Customer extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isFavorited($product_id)
+    {
+        // if (auth()->guard('customer')->check()) {
+        //     $userId = auth()->guard('customer')->user()->id;
+        //     $favorited = Favotite::where([
+        //         'customer_id'=> $userId, 
+        //         'product_id' => $product_id
+        //     ])->first();
+        //     return $favorited;
+        // }
+
+        return $this->hasOne(Favotite::class, 'customer_id','id')->where('product_id', $product_id)->first();
+
+        return false;
+    }
+
+    // JOIN 3 bang
+    // customers - favorites - products
+    /**
+     * customers -> id
+     * products  -> id
+     * favorites
+     *      customer_id
+     *      product_id
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Product::class,'favotites');
+    }
 }

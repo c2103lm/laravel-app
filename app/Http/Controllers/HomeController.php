@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Favotite;
 
 class HomeController extends Controller
 {
@@ -84,6 +85,30 @@ class HomeController extends Controller
      {
         auth()->guard('customer')->logout();
         return redirect()->route('home.login')->with('ok','Chào mừng trở lại');
+     }
+
+     public function favorite($id)
+     {
+        Favotite::create([
+            'product_id' => $id,
+            'customer_id' => auth()->guard('customer')->user()->id
+        ]);
+        return redirect()->route('home')->with('ok','Yeu thich thanh cong');
+     }
+     
+     public function unfavorite($id)
+     {
+        Favotite::where([
+            'product_id' => $id,
+            'customer_id' => auth()->guard('customer')->user()->id
+        ])->delete();
+        return redirect()->route('home')->with('ok','Yeu thich thanh cong');
+     }
+
+     public function favorites_list()
+     {
+        $products = auth()->guard('customer')->user()->favorites;
+        return view('favorites_list', compact('products'));
      }
 }
 
