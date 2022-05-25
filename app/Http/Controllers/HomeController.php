@@ -36,8 +36,9 @@ class HomeController extends Controller
     {
         // $products = $category->products()->paginate(3);
         $image_list = $product->image_list ? json_decode($product->image_list, true) : [];
-        // dd ($image_list);
-        return view('product', compact('product','image_list'));
+        $image_list1 = $product->images;
+        // dd ($image_list1);
+        return view('product', compact('product','image_list','image_list1'));
     }
 
     /**

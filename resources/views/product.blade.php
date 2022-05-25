@@ -29,6 +29,12 @@
                         <img class="product-thumb" src="{{url('public/uploads/'.$img)}}" alt="" style="width:100%">
                     </div>
                     @endforeach
+
+                    @foreach($image_list1 as $img1) 
+                    <div class="col-md-4">
+                        <img class="product-thumb" src="{{url('public/uploads/'.$img1->image_name)}}" alt="" style="width:100%">
+                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-7">

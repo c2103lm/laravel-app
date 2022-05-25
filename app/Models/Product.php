@@ -29,4 +29,9 @@ class Product extends Model
     {
         return $query->orderBy('id','DESC')->where('sale_price','>',0)->limit($limit)->get();
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id','id');
+    }
 }

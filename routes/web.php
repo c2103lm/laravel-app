@@ -30,6 +30,7 @@ Route::post('register', [HomeController::class, 'post_register']);
 Route::get('login', [HomeController::class, 'login'])->name('home.login');
 Route::post('login', [HomeController::class, 'post_login']);
 Route::get('logout', [HomeController::class, 'logout'])->name('home.logout');
+
 /**
  * Admin router
  */
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('restore/{category}', [CategoryController::class, 'restore'])->name('category.restore');
         Route::delete('force-delete/{category}', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
     });
+
+    Route::get('product/delete_image/{image}', [ProductController::class, 'delete_image'])->name('product.delete_image');
 
 });
 
