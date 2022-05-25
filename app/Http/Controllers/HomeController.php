@@ -32,11 +32,12 @@ class HomeController extends Controller
         return view('category', compact('products','category'));
     }
 
-    public function product (Product $product)
+    public function product(Product $product)
     {
         // $products = $category->products()->paginate(3);
-        // dd ($products);
-        return view('product', compact('product'));
+        $image_list = $product->image_list ? json_decode($product->image_list, true) : [];
+        // dd ($image_list);
+        return view('product', compact('product','image_list'));
     }
 
     /**

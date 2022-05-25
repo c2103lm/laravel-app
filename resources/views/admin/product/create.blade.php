@@ -57,12 +57,22 @@
             </div>
             <div class="form-group">
                 <label for="">Ảnh</label>
-                <input type="file" class="form-control" name="upload" id="upload" />
-                <img src="" id="show_image" alt="" style="width:350px">
+                <input type="file" class="form-control" name="upload" id="upload"  accept="image/*"/>
+                <img src="" id="show_image" alt="" style="width:100%">
                 @error('upload')
                 <small class="help-block">{{$message}}</small>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="">Ảnh Khác </label>
+                <input type="file" class="form-control" name="uploads[]" id="uploads" multiple accept="image/*"/>
+                <img src="" id="show_images" alt="" style="width:30%">
+                @error('upload')
+                <small class="help-block">{{$message}}</small>
+                @enderror
+            </div>
+
             <div class="form-group">
                 <label for="">Trạng thái</label>
 

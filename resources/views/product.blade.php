@@ -18,7 +18,18 @@
     <div class="wrap">
         <div class="main row">
             <div class="col-md-5">
-                <img src="{{url('public/uploads/'.$product->image)}}" alt="" style="width:100%">
+                <img src="{{url('public/uploads/'.$product->image)}}" id="big-img" alt="" style="width:100%">
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{url('public/uploads/'.$product->image)}}" class="product-thumb" alt="" style="width:100%">
+                    </div>
+                    @foreach($image_list as $img) 
+                    <div class="col-md-4">
+                        <img class="product-thumb" src="{{url('public/uploads/'.$img)}}" alt="" style="width:100%">
+                    </div>
+                    @endforeach
+                </div>
             </div>
             <div class="col-md-7">
                 <h2>{{$product->name}}</h2>
@@ -39,4 +50,13 @@
     </div>
 </div>
 
+@stop()
+@section('js')
+<script>
+    $('.product-thumb').click(function() {
+        var _src = $(this).attr('src');
+        // alert(_src)
+        $('#big-img').attr('src', _src);
+    })
+</script>
 @stop()

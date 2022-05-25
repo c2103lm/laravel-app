@@ -26,6 +26,9 @@ class ProductController extends Controller
 
     public function store()
     {
+
+        // dd (request()->all());
+        $image_list = [];
         request()->validate([
             'name' => 'required|unique:products',
             'category_id' => 'required',
@@ -35,13 +38,24 @@ class ProductController extends Controller
             'upload.required' => 'File không để trống',
             'upload.mimes' => 'Định dạng file là: jpeg, jpg, png, gif, bmp',
         ]);
-
+        
         $ext = request()->upload->extension();
         $file_name = time().'.'.$ext;
         request()->upload->move(public_path('uploads'), $file_name);
+        // upload nhiều ảnh
+        if (request()->has('uploads')) {
+            foreach(request()->uploads as $key => $file) {
+                $ext1 = $file->extension();
+                $file_name1 = time().$key.'.'.$ext1;
+                $file->move(public_path('uploads'), $file_name1);
+                $image_list[] = $file_name1;
+            }
+        }
 
         $data = request()->only('name','price','sale_price','category_id','status','desr');
+        // dd (json_encode($image_list));
         $data['image'] = $file_name;
+        $data['image_list'] = json_encode($image_list);
         // dd($data);
         if (Product::create($data)) {
             return redirect()->route('product.index')->with('ok','Thêm mới thành công');
@@ -49,4 +63,4 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('no','Thêm mới không thành công');
 
     }
-}
+} 

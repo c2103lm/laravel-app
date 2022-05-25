@@ -15,7 +15,8 @@ class Product extends Model
         'sale_price',
         'category_id',
         'desr',
-        'image'
+        'image',
+        'image_list'
     ];
 
     public function cat()

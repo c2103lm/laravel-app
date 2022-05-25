@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->float('price', 10,2);
             $table->float('sale_price', 10,2);
             $table->string('image')->nullable();
+            $table->text('image_list')->nullable();
             $table->text('desr')->nullable();
             $table->integer('category_id')->unsigned();
             $table->tinyInteger('status')->default(0);
