@@ -46,13 +46,28 @@
                     </b>
                 </h4>
                 <p>
-                    {{Str::words(strip_tags($product->desr), 50)}}
+                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga accusantium at doloribus, quaerat quia ex minus hic sint eum, quod cum nihil voluptas dignissimos? In modi distinctio totam aliquam rerum.
                 </p>
+
+                <hr>
+
+                
+                <form action="{{ route('cart.add', $product->id) }}" method="GET" class="form-inline" role="form">
+                
+                    <div class="form-group">
+                        <label class="sr-only" for="">label</label>
+                        <input type="number" class="form-control" name="quantity" placeholder="Input field">
+                    </div>
+                
+                    
+                
+                    <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                </form>
+                
             </div>
         </div>
 
-        <h2>Chi tiết sản phẩm</h2>
-         {!! $product->desr !!}
+       
     </div>
 </div>
 

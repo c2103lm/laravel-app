@@ -18,7 +18,7 @@
     <div class="wrap">
         <div class="main">
             <!-- start grids_of_3 -->
-            @if (count($carts))
+            @if (count($cart->items))
             
             
             <table class="table table-hover">
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($carts as $item)
+                    @foreach($cart->items as $item)
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
@@ -58,6 +58,23 @@
                     @endforeach
                 </tbody>
             </table>
+            
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr>
+                        <th>Tổng số lượng</th>
+                        <td>{{$cart->totalQuantity}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng tiền thanh toán</th>
+                        <td>{{$cart->totalAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <a href="{{route('home')}}" class="btn btn-primary">Tiếp tục mua hàng</a>
+            <a href="{{route('cart.clear')}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa')">Xóa hết</a>
+            <a href="{{route('home')}}" class="btn btn-success">Đặt hàng ngay</a>
             
             @else 
                 

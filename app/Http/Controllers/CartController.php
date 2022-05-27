@@ -4,50 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function add($id, $quantity = 1)
+    public function add(Cart $cart, $id)
     {
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            $carts[$id]->quantity += $quantity;
-        }
-        else {
-            $pro = Product::find($id);
-            $item = new \stdClass();
-            $item->id = $pro->id;
-            $item->name = $pro->name;
-            $item->image = $pro->image;
-            $item->price = $pro->sale_price > 0 ? $pro->sale_price : $pro->price;
-            $item->quantity = $quantity;
-            $carts[$id] = $item;
-        }
-        
-        session(['cart' => $carts]);
+        $pro = Product::find($id);
+        $quantity = request('quantity',1);
+        $cart->add($pro, $quantity);
         return redirect()->route('cart.view');
     }
 
-    public function update($id)
+    public function update(Cart $cart, $id)
     {
         $quantity = request('quantity',1);
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            $carts[$id]->quantity = $quantity;
-            session(['cart' => $carts]);
-        }
-       
+        $cart->updateItem($id, $quantity);
+        
         return redirect()->route('cart.view');
     }
 
-    public function delete($id)
+    public function delete(Cart $cart, $id)
     {
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            unset($carts[$id]);
-            session(['cart' => $carts]);
-        }
-       
+        $cart->removeItem($id);
         return redirect()->route('cart.view');
     }
     public function clear()
@@ -58,7 +37,6 @@ class CartController extends Controller
 
     public function view()
     {
-        $carts = session('cart')  ? session('cart') : [];
-        return view('cart-view', compact('carts'));
+        return view('cart-view');
     }
 }

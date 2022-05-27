@@ -24,14 +24,30 @@
                 </div>
                 <div class="h_icon">
                     <ul class="icon1 sub-icon1">
-                        <li><a class="active-icon c1" href="#"><i>$300</i></a>
+                        <li><a class="active-icon c1" href="#"><i>${{ number_format($cart->totalAmount) }} ( {{$cart->totalQuantity}} itmes) </i></a>
                             <ul class="sub-icon1 list">
+                            @if (count($cart->items))
+                            @foreach($cart->items as $item)
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="{{url('public/uploads')}}/{{$item->image}}" width="40">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{$item->name}}</h4>
+                                        <p>Quantity: {{$item->quantity}}</p>
+                                        <a href="{{ route('cart.delete', $item->id) }}" onclick="return confirm('Chắc không?')" class="btn btn-sm btn-danger pull-right">Xóa</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                                
+                            @else 
                                 <li>
                                     <h3>shopping cart empty</h3><a href=""></a>
                                 </li>
+                            @endif
+
                                 <li>
-                                    <p>if items in your wishlit are missing, <a href="contact.html">contact us</a> to
-                                        view them</p>
+                                    <a href="{{ route('cart.view') }}">view cart</a> 
                                 </li>
                             </ul>
                         </li>
