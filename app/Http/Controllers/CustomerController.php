@@ -47,9 +47,7 @@ class CustomerController extends Controller
         } else {
             return abort(401);
         }
-         
 
-       
     }
 
     public function checkout_ok()
