@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,5 +63,13 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/view', [CartController::class, 'view'])->name('cart.view');
+
+});
+
+Route::group(['prefix' => 'customer'], function() {
+    Route::get('/checkout', [CustomerController::class, 'checkout'])->name('customer.checkout');
+    Route::post('/checkout', [CustomerController::class, 'post_checkout']);
+    Route::get('/checkout-ok', [CustomerController::class, 'checkout_ok'])->name('checkout-ok');
+    Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.order');
 
 });

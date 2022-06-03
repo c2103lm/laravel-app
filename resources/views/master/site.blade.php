@@ -5,10 +5,10 @@
     <title>@yield('title') | My Shopping</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    
+
     <link href="{{url('public/assets')}}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets')}}/css/slider.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{url('public/assets')}}/css/owl.carousel.css" rel="stylesheet">
@@ -24,30 +24,34 @@
                 </div>
                 <div class="h_icon">
                     <ul class="icon1 sub-icon1">
-                        <li><a class="active-icon c1" href="#"><i>${{ number_format($cart->totalAmount) }} ( {{$cart->totalQuantity}} itmes) </i></a>
+                        <li><a class="active-icon c1" href="#"><i>${{ number_format($cart->totalAmount) }} (
+                                    {{$cart->totalQuantity}} itmes) </i></a>
                             <ul class="sub-icon1 list">
-                            @if (count($cart->items))
-                            @foreach($cart->items as $item)
+                                @if (count($cart->items))
+                                @foreach($cart->items as $item)
                                 <div class="media">
                                     <a class="pull-left" href="#">
-                                        <img class="media-object" src="{{url('public/uploads')}}/{{$item->image}}" width="40">
+                                        <img class="media-object" src="{{url('public/uploads')}}/{{$item->image}}"
+                                            width="40">
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">{{$item->name}}</h4>
                                         <p>Quantity: {{$item->quantity}}</p>
-                                        <a href="{{ route('cart.delete', $item->id) }}" onclick="return confirm('Chắc không?')" class="btn btn-sm btn-danger pull-right">Xóa</a>
+                                        <a href="{{ route('cart.delete', $item->id) }}"
+                                            onclick="return confirm('Chắc không?')"
+                                            class="btn btn-sm btn-danger pull-right">Xóa</a>
                                     </div>
                                 </div>
-                            @endforeach
-                                
-                            @else 
+                                @endforeach
+
+                                @else
                                 <li>
                                     <h3>shopping cart empty</h3><a href=""></a>
                                 </li>
-                            @endif
+                                @endif
 
                                 <li>
-                                    <a href="{{ route('cart.view') }}">view cart</a> 
+                                    <a href="{{ route('cart.view') }}">view cart</a>
                                 </li>
                             </ul>
                         </li>
@@ -70,16 +74,19 @@
                     <ul>
                         <li class="active"><a href="{{route('home')}}">Home</a></li> |
                         @foreach($categories as $cat)
-                        <li><a href="{{route('home.category',['category'=>$cat->id, 'slug'=> Str::slug($cat->name)])}}">{{$cat->name}}</a></li>
+                        <li><a
+                                href="{{route('home.category',['category'=>$cat->id, 'slug'=> Str::slug($cat->name)])}}">{{$cat->name}}</a>
+                        </li>
                         @endforeach
                         <li><a href="#">services</a></li>
                         <li><a href="#">Contact us</a></li>
                         @if (auth()->guard('customer')->check())
-                            <li><a href="">{{auth()->guard('customer')->user()->name}}</a></li>
-                            <li><a href="{{ route('home.logout') }}">Thoát</a></li>
-                        @else 
-                            <li><a href="{{ route('home.register') }}">Đăng ký</a></li>
-                            <li><a href="{{ route('home.login') }}">Đăng nhập</a></li>
+                        <li><a href="">{{auth()->guard('customer')->user()->name}}</a></li>
+                        <li><a href="{{ route('home.logout') }}">Thoát</a></li>
+                        <li><a href="{{ route('customer.order') }}">My Order</a></li>
+                        @else
+                        <li><a href="{{ route('home.register') }}">Đăng ký</a></li>
+                        <li><a href="{{ route('home.login') }}">Đăng nhập</a></li>
                         @endif
                     </ul>
                 </div>
@@ -110,43 +117,43 @@
         </div>
     </div>
     <!-- start slider -->
-<div id="da-slider" class="da-slider">
-    <div class="da-slide">
-        <h2>welcome to aditii</h2>
-        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her
-            hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line
-            Lane.</p>
-        <a href="details.html" class="da-link">shop now</a>
-        <div class="da-img"><img src="{{url('public/assets')}}/images/slider1.png" alt="image01" /></div>
+    <div id="da-slider" class="da-slider">
+        <div class="da-slide">
+            <h2>welcome to aditii</h2>
+            <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her
+                hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line
+                Lane.</p>
+            <a href="details.html" class="da-link">shop now</a>
+            <div class="da-img"><img src="{{url('public/assets')}}/images/slider1.png" alt="image01" /></div>
+        </div>
+        <div class="da-slide">
+            <h2>Easy management</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.</p>
+            <a href="details.html" class="da-link">shop now</a>
+            <div class="da-img"><img src="{{url('public/assets')}}/images/slider2.png" alt="image01" /></div>
+        </div>
+        <div class="da-slide">
+            <h2>Revolution</h2>
+            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
+                paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <a href="details.html" class="da-link">shop now</a>
+            <div class="da-img"><img src="{{url('public/assets')}}/images/slider3.png" alt="image01" /></div>
+        </div>
+        <div class="da-slide">
+            <h2>Quality Control</h2>
+            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
+                One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World
+                of Grammar.</p>
+            <a href="details.html" class="da-link">shop now</a>
+            <div class="da-img"><img src="{{url('public/assets')}}/images/slider4.png" alt="image01" /></div>
+        </div>
+        <nav class="da-arrows">
+            <span class="da-arrows-prev"></span>
+            <span class="da-arrows-next"></span>
+        </nav>
     </div>
-    <div class="da-slide">
-        <h2>Easy management</h2>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-            blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-            ocean.</p>
-        <a href="details.html" class="da-link">shop now</a>
-        <div class="da-img"><img src="{{url('public/assets')}}/images/slider2.png" alt="image01" /></div>
-    </div>
-    <div class="da-slide">
-        <h2>Revolution</h2>
-        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
-            paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-        <a href="details.html" class="da-link">shop now</a>
-        <div class="da-img"><img src="{{url('public/assets')}}/images/slider3.png" alt="image01" /></div>
-    </div>
-    <div class="da-slide">
-        <h2>Quality Control</h2>
-        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
-            One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World
-            of Grammar.</p>
-        <a href="details.html" class="da-link">shop now</a>
-        <div class="da-img"><img src="{{url('public/assets')}}/images/slider4.png" alt="image01" /></div>
-    </div>
-    <nav class="da-arrows">
-        <span class="da-arrows-prev"></span>
-        <span class="da-arrows-next"></span>
-    </nav>
-</div>
     @yield('main')
     <!-- start footer -->
     <div class="footer_bg">
