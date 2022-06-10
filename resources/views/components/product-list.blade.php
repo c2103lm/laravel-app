@@ -6,7 +6,7 @@
         <div class="price">
             <h4>{{$ps->price}} </h4>
             <div class="form-inline">
-                <a href="{{ route('cart.add', $ps->id) }}"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                <a href="{{ route('cart.add', $ps->id) }}" class="add-cart"><i class="glyphicon glyphicon-shopping-cart"></i></a>
                 @if (auth()->guard('customer')->check())
                     @if (auth()->guard('customer')->user()->isFavorited($ps->id))
                         <a href="{{ route('home.unfavorite', $ps->id) }}"><i class="glyphicon glyphicon-heart-empty" style="color: red"></i></a>

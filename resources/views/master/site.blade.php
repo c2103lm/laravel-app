@@ -8,7 +8,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <link href="{{url('public/assets')}}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets')}}/css/slider.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{url('public/assets')}}/css/owl.carousel.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <div class="logo">
                     <a href="index.html"><img src="{{url('public/assets')}}/images/logo.png" alt="" /> </a>
                 </div>
-                <div class="h_icon">
+                <div class="h_icon" id="cart-mini">
                     <ul class="icon1 sub-icon1">
                         <li><a class="active-icon c1" href="#"><i>${{ number_format($cart->totalAmount) }} (
                                     {{$cart->totalQuantity}} itmes) </i></a>
@@ -38,8 +38,7 @@
                                         <h4 class="media-heading">{{$item->name}}</h4>
                                         <p>Quantity: {{$item->quantity}}</p>
                                         <a href="{{ route('cart.delete', $item->id) }}"
-                                            onclick="return confirm('Chắc không?')"
-                                            class="btn btn-sm btn-danger pull-right">Xóa</a>
+                                            class="btn btn-sm btn-danger delete-cart pull-right">Xóa</a>
                                     </div>
                                 </div>
                                 @endforeach
@@ -270,6 +269,8 @@
     <!-- start top_js_button -->
     <script type="text/javascript" src="{{url('public/assets')}}/js/move-top.js"></script>
     <script type="text/javascript" src="{{url('public/assets')}}/js/easing.js"></script>
+    
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></s
     <script type="text/javascript">
     jQuery(document).ready(function($) {
         $(".scroll").click(function(event) {
@@ -299,6 +300,74 @@
     </script>
 
     @yield('js')
+
+    <script>
+    
+//     Swal.fire({
+//   title: 'Do you want to save the changes?',
+//   showDenyButton: true,
+//   showCancelButton: true,
+//   confirmButtonText: 'Save',
+//   denyButtonText: `Don't save`,
+// }).then((result) => {
+//   /* Read more about isConfirmed, isDenied below */
+//   if (result.isConfirmed) {
+//     Swal.fire('Saved!', '', 'success')
+//   } else if (result.isDenied) {
+//     Swal.fire('Changes are not saved', '', 'info')
+//   }
+// })
+
+       $('.add-cart').click(function(ev) {
+           ev.preventDefault();
+           var href = $(this).attr('href');
+           $.ajax({
+               url: href,
+               type: 'GET',
+               success: function(res) {
+                $('#cart-mini').load(location.href + ' #cart-mini*');
+                Swal.fire({
+                    title: 'Thông báo',
+                    text: 'Thêm giỏ hàng thành công',
+                    icon: 'success',
+                    showCancelButton: true,
+                    cancelButtonText: 'Đóng'
+                })
+               }
+           })
+       });
+
+       $('.delete-cart').click(function(ev) {
+           ev.preventDefault();
+           var href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                // showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Có',
+                // denyButtonText: `Không`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: href,
+                        type: 'GET',
+                        success: function(res) {
+                            $('#cart-mini').load(location.href + ' #cart-mini*');
+                            Swal.fire({
+                                title: 'Thông báo',
+                                text: 'Xóa giỏ hàng thành công',
+                                icon: 'success',
+                                showCancelButton: true,
+                                cancelButtonText: 'Đóng'
+                            })
+                        }
+                    })
+                } 
+            })
+       })
+    </script>
 </body>
 
 </html>
